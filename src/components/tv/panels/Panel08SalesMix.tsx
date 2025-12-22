@@ -21,11 +21,11 @@ export const Panel08SalesMix = () => {
       <PanelHeader 
         title="Vendas: Mix e Ticket"
         subtitle="O que estamos vendendo e por quanto?"
-        icon={<ShoppingBag className="w-6 h-6" />}
+        icon={<ShoppingBag className="w-10 h-10" />}
       />
 
-      <div className="flex-1 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-1 space-y-6">
+        <div className="grid grid-cols-2 gap-6">
           <MetricCard
             label="Ticket Médio Hoje"
             value="R$ 2.080"
@@ -50,28 +50,28 @@ export const Panel08SalesMix = () => {
           transition={{ delay: 0.3 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <Tag className="w-5 h-5 text-primary" />
-            <span className="text-sm text-muted-foreground uppercase">Produtos Mais Vendidos</span>
+          <div className="flex items-center gap-3 mb-6">
+            <Tag className="w-8 h-8 text-primary" />
+            <span className="text-xl text-muted-foreground uppercase">Produtos Mais Vendidos</span>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {topProducts.map((product, i) => (
               <motion.div
                 key={product.name}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg"
+                className="flex items-center justify-between p-5 bg-secondary/50 rounded-xl"
               >
-                <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                <div className="flex items-center gap-4">
+                  <span className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-2xl">
                     {i + 1}
                   </span>
-                  <span className="font-bold text-foreground">{product.name}</span>
+                  <span className="font-bold text-foreground text-2xl">{product.name}</span>
                 </div>
                 <div className="text-right">
-                  <p className="text-lg font-bold text-foreground">{product.sales} vendas</p>
-                  <p className="text-sm text-muted-foreground">{product.revenue}</p>
+                  <p className="text-2xl font-bold text-foreground">{product.sales} vendas</p>
+                  <p className="text-lg text-muted-foreground">{product.revenue}</p>
                 </div>
               </motion.div>
             ))}
@@ -84,11 +84,11 @@ export const Panel08SalesMix = () => {
           transition={{ delay: 0.6 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <DollarSign className="w-5 h-5 text-success" />
-            <span className="text-sm text-muted-foreground uppercase">Receita por Canal</span>
+          <div className="flex items-center gap-3 mb-6">
+            <DollarSign className="w-8 h-8 text-success" />
+            <span className="text-xl text-muted-foreground uppercase">Receita por Canal</span>
           </div>
-          <div className="flex h-8 rounded-lg overflow-hidden mb-3">
+          <div className="flex h-12 rounded-xl overflow-hidden mb-4">
             {channels.map((channel) => (
               <motion.div
                 key={channel.name}
@@ -101,34 +101,12 @@ export const Panel08SalesMix = () => {
           </div>
           <div className="flex justify-between">
             {channels.map((channel) => (
-              <div key={channel.name} className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${channel.color}`} />
-                <span className="text-sm text-muted-foreground">{channel.name}</span>
-                <span className="text-sm font-bold text-foreground">{channel.value}%</span>
+              <div key={channel.name} className="flex items-center gap-3">
+                <div className={`w-4 h-4 rounded-full ${channel.color}`} />
+                <span className="text-lg text-muted-foreground">{channel.name}</span>
+                <span className="text-lg font-bold text-foreground">{channel.value}%</span>
               </div>
             ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="metric-card"
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <Percent className="w-5 h-5 text-warning" />
-            <span className="text-sm text-muted-foreground uppercase">Descontos Hoje</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-muted-foreground text-sm">Média</span>
-              <p className="text-3xl font-bold text-warning">8.5%</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground text-sm">Total</span>
-              <p className="text-3xl font-bold text-foreground">R$ 4.230</p>
-            </div>
           </div>
         </motion.div>
       </div>
