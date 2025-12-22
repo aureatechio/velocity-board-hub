@@ -21,13 +21,13 @@ export const Panel06SLA = () => {
       <PanelHeader 
         title="Velocidade do Pipeline"
         subtitle="Quão rápido estamos fechando?"
-        icon={<Gauge className="w-10 h-10" />}
+        icon={<Gauge className="w-5 h-5" />}
       />
 
-      <div className="flex-1 space-y-6">
-        <div className="grid grid-cols-2 gap-6">
+      <div className="flex-1 space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           <MetricCard
-            label="Tempo Médio Lead → Proposta"
+            label="Lead → Proposta"
             value="4.2"
             suffix="dias"
             variant="primary"
@@ -35,7 +35,7 @@ export const Panel06SLA = () => {
             delay={0.1}
           />
           <MetricCard
-            label="Tempo Médio Proposta → Fechamento"
+            label="Proposta → Fech."
             value="6.8"
             suffix="dias"
             variant="success"
@@ -50,32 +50,32 @@ export const Panel06SLA = () => {
           transition={{ delay: 0.3 }}
           className="metric-card"
         >
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <Clock className="w-8 h-8 text-primary" />
-              <span className="text-2xl font-bold text-foreground">Ciclo Médio de Venda</span>
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <Clock className="w-5 h-5 text-primary" />
+              <span className="text-base font-bold text-foreground">Ciclo Médio</span>
             </div>
-            <span className="text-7xl font-bold font-display text-primary">11</span>
+            <span className="text-3xl font-bold font-display text-primary">11d</span>
           </div>
-          <p className="text-xl text-muted-foreground">dias do lead até o fechamento</p>
+          <p className="text-sm text-muted-foreground">do lead até fechamento</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
             className="metric-card"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-6 h-6 text-success" />
-              <span className="text-xl text-muted-foreground uppercase">Pipeline Mais Rápido</span>
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-4 h-4 text-success" />
+              <span className="text-xs text-muted-foreground uppercase">Mais Rápidos</span>
             </div>
-            <div className="space-y-4">
-              {fastestPipeline.map((agent, i) => (
-                <div key={agent.name} className="flex justify-between items-center">
-                  <span className="text-xl text-foreground">{agent.name}</span>
-                  <span className="text-2xl text-success font-bold">{agent.days}d</span>
+            <div className="space-y-1">
+              {fastestPipeline.map((agent) => (
+                <div key={agent.name} className="flex justify-between items-center text-sm">
+                  <span className="text-foreground truncate">{agent.name}</span>
+                  <span className="text-success font-bold">{agent.days}d</span>
                 </div>
               ))}
             </div>
@@ -87,15 +87,15 @@ export const Panel06SLA = () => {
             transition={{ delay: 0.5 }}
             className="metric-card"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingDown className="w-6 h-6 text-destructive" />
-              <span className="text-xl text-muted-foreground uppercase">Pipeline Mais Lento</span>
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingDown className="w-4 h-4 text-destructive" />
+              <span className="text-xs text-muted-foreground uppercase">Mais Lentos</span>
             </div>
-            <div className="space-y-4">
-              {slowestPipeline.map((agent, i) => (
-                <div key={agent.name} className="flex justify-between items-center">
-                  <span className="text-xl text-foreground">{agent.name}</span>
-                  <span className="text-2xl text-destructive font-bold">{agent.days}d</span>
+            <div className="space-y-1">
+              {slowestPipeline.map((agent) => (
+                <div key={agent.name} className="flex justify-between items-center text-sm">
+                  <span className="text-foreground truncate">{agent.name}</span>
+                  <span className="text-destructive font-bold">{agent.days}d</span>
                 </div>
               ))}
             </div>
@@ -108,30 +108,23 @@ export const Panel06SLA = () => {
           transition={{ delay: 0.6 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <Clock className="w-6 h-6 text-muted-foreground" />
-            <span className="text-xl text-muted-foreground uppercase">Tempo por Etapa</span>
-          </div>
-          <div className="flex gap-3 h-32">
+          <span className="text-xs text-muted-foreground uppercase mb-2 block">Tempo por Etapa</span>
+          <div className="flex gap-2 h-16">
             <div className="flex-1 flex flex-col justify-end">
               <div className="bg-primary/80 rounded-t" style={{ height: '40%' }}></div>
-              <span className="text-lg text-center mt-2 text-muted-foreground">Qualificação</span>
-              <span className="text-xl text-center font-bold text-foreground">1.5d</span>
+              <span className="text-xs text-center mt-1 text-muted-foreground">Qualif.</span>
             </div>
             <div className="flex-1 flex flex-col justify-end">
               <div className="bg-primary rounded-t" style={{ height: '60%' }}></div>
-              <span className="text-lg text-center mt-2 text-muted-foreground">Proposta</span>
-              <span className="text-xl text-center font-bold text-foreground">2.7d</span>
+              <span className="text-xs text-center mt-1 text-muted-foreground">Proposta</span>
             </div>
             <div className="flex-1 flex flex-col justify-end">
               <div className="bg-success/80 rounded-t" style={{ height: '80%' }}></div>
-              <span className="text-lg text-center mt-2 text-muted-foreground">Negociação</span>
-              <span className="text-xl text-center font-bold text-foreground">4.1d</span>
+              <span className="text-xs text-center mt-1 text-muted-foreground">Negoc.</span>
             </div>
             <div className="flex-1 flex flex-col justify-end">
               <div className="bg-success rounded-t" style={{ height: '50%' }}></div>
-              <span className="text-lg text-center mt-2 text-muted-foreground">Fechamento</span>
-              <span className="text-xl text-center font-bold text-foreground">2.7d</span>
+              <span className="text-xs text-center mt-1 text-muted-foreground">Fecham.</span>
             </div>
           </div>
         </motion.div>

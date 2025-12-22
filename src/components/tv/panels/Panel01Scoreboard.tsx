@@ -10,10 +10,10 @@ export const Panel01Scoreboard = () => {
       <PanelHeader 
         title="Placar do Dia"
         subtitle="Como está HOJE?"
-        icon={<Trophy className="w-10 h-10" />}
+        icon={<Trophy className="w-5 h-5" />}
       />
 
-      <div className="flex-1 grid grid-cols-2 gap-6">
+      <div className="flex-1 grid grid-cols-2 gap-3">
         <MetricCard
           label="Vendas Hoje"
           value="R$ 47.850"
@@ -57,24 +57,24 @@ export const Panel01Scoreboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="mt-8 metric-card"
+        className="mt-4 metric-card"
       >
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <Target className="w-8 h-8 text-primary" />
-            <span className="text-2xl font-bold">Meta do Dia</span>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <Target className="w-5 h-5 text-primary" />
+            <span className="text-base font-bold">Meta do Dia</span>
           </div>
-          <span className="text-2xl text-muted-foreground">R$ 60.000</span>
+          <span className="text-sm text-muted-foreground">R$ 60.000</span>
         </div>
         <ProgressBar value={47850} max={60000} variant="primary" size="lg" />
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-6 p-6 bg-warning/20 rounded-2xl border border-warning/30 text-center"
+          className="mt-3 p-3 bg-warning/20 rounded-lg border border-warning/30 text-center"
         >
-          <p className="text-warning font-bold text-2xl">
-            Faltam <span className="text-5xl">7 vendas</span> ou <span className="text-5xl">R$ 12.150</span> para bater!
+          <p className="text-warning font-bold text-sm">
+            Faltam <span className="text-xl">7 vendas</span> ou <span className="text-xl">R$ 12.150</span> para bater!
           </p>
         </motion.div>
       </motion.div>
