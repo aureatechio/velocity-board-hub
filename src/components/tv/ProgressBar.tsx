@@ -28,18 +28,18 @@ export const ProgressBar = ({
   };
 
   const sizeStyles = {
-    sm: "h-3",
-    md: "h-6",
-    lg: "h-8",
+    sm: "h-2",
+    md: "h-3",
+    lg: "h-4",
   };
 
   return (
     <div className="w-full">
       {(label || showPercentage) && (
-        <div className="flex justify-between items-center mb-3">
-          {label && <span className="text-muted-foreground text-lg">{label}</span>}
+        <div className="flex justify-between items-center mb-1">
+          {label && <span className="text-muted-foreground text-sm">{label}</span>}
           {showPercentage && (
-            <span className="text-foreground font-bold text-2xl">{Math.round(percentage)}%</span>
+            <span className="text-foreground font-bold text-base">{Math.round(percentage)}%</span>
           )}
         </div>
       )}

@@ -17,11 +17,11 @@ export const Panel03Funnel = () => {
       <PanelHeader 
         title="Funil do Dia"
         subtitle="Onde estamos perdendo?"
-        icon={<Filter className="w-10 h-10" />}
+        icon={<Filter className="w-5 h-5" />}
       />
 
       <div className="flex-1 flex flex-col justify-center">
-        <div className="relative space-y-4">
+        <div className="relative space-y-2">
           {funnelStages.map((stage, i) => (
             <div key={stage.label} className="relative">
               <FunnelStage {...stage} delay={0.1 + i * 0.1} />
@@ -30,9 +30,9 @@ export const Panel03Funnel = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 + i * 0.1 }}
-                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10"
+                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-10"
                 >
-                  <ArrowRight className="w-6 h-6 text-muted-foreground rotate-90" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground rotate-90" />
                 </motion.div>
               )}
             </div>
@@ -43,20 +43,20 @@ export const Panel03Funnel = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="mt-10 grid grid-cols-2 gap-6"
+          className="mt-4 grid grid-cols-2 gap-3"
         >
           <div className="metric-card">
-            <div className="flex items-center gap-3 mb-3">
-              <Clock className="w-6 h-6 text-muted-foreground" />
-              <span className="text-xl text-muted-foreground">Tempo Lead → Proposta</span>
+            <div className="flex items-center gap-2 mb-1">
+              <Clock className="w-4 h-4 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">Lead → Proposta</span>
             </div>
-            <span className="text-5xl font-bold font-display text-foreground">3.2 dias</span>
+            <span className="text-2xl font-bold font-display text-foreground">3.2 dias</span>
           </div>
 
           <div className="metric-card bg-destructive/10 border-destructive/30">
-            <span className="text-xl text-muted-foreground block mb-3">Gargalo do Dia</span>
-            <span className="text-4xl font-bold text-destructive">Qualificação → Proposta</span>
-            <p className="text-lg text-muted-foreground mt-2">45% de conversão (meta: 60%)</p>
+            <span className="text-xs text-muted-foreground block mb-1">Gargalo do Dia</span>
+            <span className="text-base font-bold text-destructive">Qualif. → Proposta</span>
+            <p className="text-xs text-muted-foreground">45% (meta: 60%)</p>
           </div>
         </motion.div>
       </div>

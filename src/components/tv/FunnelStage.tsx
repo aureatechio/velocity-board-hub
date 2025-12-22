@@ -22,27 +22,27 @@ export const FunnelStage = ({
       animate={{ opacity: 1, scaleX: 1 }}
       transition={{ delay, duration: 0.5 }}
       className={cn(
-        "relative p-6 rounded-2xl border transition-all",
+        "relative p-3 rounded-xl border transition-all",
         isBottleneck 
           ? "bg-destructive/20 border-destructive/50" 
           : "bg-card border-border/50"
       )}
     >
       {isBottleneck && (
-        <div className="absolute -top-3 -right-3 px-4 py-1 bg-destructive rounded-full text-lg font-bold text-destructive-foreground">
+        <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-destructive rounded-full text-xs font-bold text-destructive-foreground">
           GARGALO
         </div>
       )}
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-xl text-muted-foreground uppercase tracking-wider">{label}</span>
+      <div className="flex justify-between items-center mb-1">
+        <span className="text-sm text-muted-foreground uppercase tracking-wider">{label}</span>
         <span className={cn(
-          "text-xl font-bold",
+          "text-sm font-bold",
           isBottleneck ? "text-destructive" : "text-success"
         )}>
           {percentage}%
         </span>
       </div>
-      <span className="text-6xl font-bold font-display text-foreground">{value}</span>
+      <span className="text-3xl font-bold font-display text-foreground">{value}</span>
     </motion.div>
   );
 };

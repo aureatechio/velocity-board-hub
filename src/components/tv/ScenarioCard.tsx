@@ -43,15 +43,15 @@ export const ScenarioCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.4 }}
       className={cn(
-        "p-6 rounded-2xl border text-center",
+        "p-3 rounded-xl border text-center",
         styles.bg,
         styles.border
       )}
     >
-      <p className="text-lg text-muted-foreground uppercase tracking-wider mb-2">
+      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
         {label || styles.label}
       </p>
-      <span className={cn("text-5xl font-bold font-display", styles.text)}>
+      <span className={cn("text-xl md:text-2xl font-bold font-display", styles.text)}>
         {value}
       </span>
     </motion.div>
