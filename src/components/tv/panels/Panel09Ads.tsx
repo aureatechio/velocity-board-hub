@@ -1,35 +1,19 @@
 import { PanelHeader } from "@/components/tv/PanelHeader";
 import { MetricCard } from "@/components/tv/MetricCard";
-import { Megaphone, DollarSign, Users, ShoppingCart, AlertTriangle, CheckCircle } from "lucide-react";
+import { Megaphone, DollarSign, Users, ShoppingCart, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export const Panel09Ads = () => {
-  const cplStatus = "good" as "good" | "warning" | "bad";
-
-  const getStatusStyles = () => {
-    switch (cplStatus) {
-      case "good":
-        return { bg: "bg-success/10 border-success/30", text: "text-success", icon: <CheckCircle className="w-5 h-5 text-success" /> };
-      case "warning":
-        return { bg: "bg-warning/10 border-warning/30", text: "text-warning", icon: <AlertTriangle className="w-5 h-5 text-warning" /> };
-      case "bad":
-        return { bg: "bg-destructive/10 border-destructive/30", text: "text-destructive", icon: <AlertTriangle className="w-5 h-5 text-destructive" /> };
-    }
-  };
-
-  const statusStyles = getStatusStyles();
-  
   return (
     <div className="tv-panel">
       <PanelHeader 
         title="Ads do Dia"
         subtitle="O anúncio está virando conversa e venda?"
-        icon={<Megaphone className="w-6 h-6" />}
+        icon={<Megaphone className="w-10 h-10" />}
       />
 
-      <div className="flex-1 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-1 space-y-6">
+        <div className="grid grid-cols-2 gap-6">
           <MetricCard
             label="Gasto Hoje"
             value="R$ 1.850"
@@ -41,22 +25,18 @@ export const Panel09Ads = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className={cn("metric-card", statusStyles.bg)}
+            className="metric-card bg-success/10 border-success/30"
           >
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-4">
               <span className="metric-label">CPL Hoje</span>
-              {statusStyles.icon}
+              <CheckCircle className="w-8 h-8 text-success" />
             </div>
-            <span className={cn("text-5xl font-bold font-display", statusStyles.text)}>
-              R$ 27,60
-            </span>
-            <p className="text-sm text-muted-foreground mt-1">
-              Meta: até R$ 35,00
-            </p>
+            <span className="text-7xl font-bold font-display text-success">R$ 27,60</span>
+            <p className="text-lg text-muted-foreground mt-2">Meta: até R$ 35,00</p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <MetricCard
             label="Leads de Ads Hoje"
             value={67}
@@ -81,30 +61,30 @@ export const Panel09Ads = () => {
           transition={{ delay: 0.5 }}
           className="metric-card"
         >
-          <span className="text-sm text-muted-foreground uppercase mb-4 block">Funil de Ads</span>
-          <div className="flex items-center justify-between gap-4">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2">
-                <DollarSign className="w-8 h-8 text-primary" />
+          <span className="text-xl text-muted-foreground uppercase mb-6 block">Funil de Ads</span>
+          <div className="flex items-center justify-between gap-6">
+            <div className="text-center flex-1">
+              <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                <DollarSign className="w-12 h-12 text-primary" />
               </div>
-              <span className="text-2xl font-bold text-foreground">R$ 1.850</span>
-              <p className="text-xs text-muted-foreground">Investido</p>
+              <span className="text-4xl font-bold text-foreground">R$ 1.850</span>
+              <p className="text-lg text-muted-foreground">Investido</p>
             </div>
-            <div className="text-muted-foreground">→</div>
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-warning/20 flex items-center justify-center mx-auto mb-2">
-                <Users className="w-8 h-8 text-warning" />
+            <div className="text-muted-foreground text-4xl">→</div>
+            <div className="text-center flex-1">
+              <div className="w-24 h-24 rounded-full bg-warning/20 flex items-center justify-center mx-auto mb-3">
+                <Users className="w-12 h-12 text-warning" />
               </div>
-              <span className="text-2xl font-bold text-foreground">67</span>
-              <p className="text-xs text-muted-foreground">Leads</p>
+              <span className="text-4xl font-bold text-foreground">67</span>
+              <p className="text-lg text-muted-foreground">Leads</p>
             </div>
-            <div className="text-muted-foreground">→</div>
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-2">
-                <ShoppingCart className="w-8 h-8 text-success" />
+            <div className="text-muted-foreground text-4xl">→</div>
+            <div className="text-center flex-1">
+              <div className="w-24 h-24 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-3">
+                <ShoppingCart className="w-12 h-12 text-success" />
               </div>
-              <span className="text-2xl font-bold text-foreground">8</span>
-              <p className="text-xs text-muted-foreground">Vendas</p>
+              <span className="text-4xl font-bold text-foreground">8</span>
+              <p className="text-lg text-muted-foreground">Vendas</p>
             </div>
           </div>
         </motion.div>
@@ -117,12 +97,12 @@ export const Panel09Ads = () => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-sm text-muted-foreground uppercase">ROAS Hoje</span>
-              <p className="text-4xl font-bold font-display text-success">4.2x</p>
+              <span className="text-xl text-muted-foreground uppercase">ROAS Hoje</span>
+              <p className="text-6xl font-bold font-display text-success">4.2x</p>
             </div>
             <div>
-              <span className="text-sm text-muted-foreground uppercase">Receita de Ads</span>
-              <p className="text-4xl font-bold font-display text-foreground">R$ 7.770</p>
+              <span className="text-xl text-muted-foreground uppercase">Receita de Ads</span>
+              <p className="text-6xl font-bold font-display text-foreground">R$ 7.770</p>
             </div>
           </div>
         </motion.div>

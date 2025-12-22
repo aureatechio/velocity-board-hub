@@ -33,9 +33,9 @@ export const MetricCard = ({
   };
 
   const sizeStyles = {
-    sm: "text-3xl md:text-4xl",
-    md: "text-5xl md:text-6xl",
-    lg: "text-6xl md:text-8xl",
+    sm: "text-5xl md:text-6xl",
+    md: "text-7xl md:text-8xl",
+    lg: "text-8xl md:text-9xl",
   };
 
   return (
@@ -45,17 +45,17 @@ export const MetricCard = ({
       transition={{ delay, duration: 0.4 }}
       className="metric-card"
     >
-      <p className="metric-label mb-2">{label}</p>
-      <div className="flex items-baseline gap-2">
-        {prefix && <span className="text-2xl text-muted-foreground">{prefix}</span>}
+      <p className="metric-label mb-4">{label}</p>
+      <div className="flex items-baseline gap-3">
+        {prefix && <span className="text-3xl text-muted-foreground">{prefix}</span>}
         <span className={cn("font-bold font-display tracking-tight", variantStyles[variant], sizeStyles[size])}>
           {value}
         </span>
-        {suffix && <span className="text-2xl text-muted-foreground">{suffix}</span>}
+        {suffix && <span className="text-3xl text-muted-foreground">{suffix}</span>}
       </div>
       {trend && trendValue && (
         <div className={cn(
-          "mt-2 flex items-center gap-1 text-sm",
+          "mt-4 flex items-center gap-2 text-xl",
           trend === "up" && "text-success",
           trend === "down" && "text-destructive",
           trend === "neutral" && "text-muted-foreground"

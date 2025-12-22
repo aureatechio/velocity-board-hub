@@ -11,16 +11,16 @@ export const PanelHeader = ({ title, subtitle, icon }: PanelHeaderProps) => {
     <motion.div 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex items-center gap-4 mb-6"
+      className="flex items-center gap-6 mb-10"
     >
       {icon && (
-        <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+        <div className="w-20 h-20 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
           {icon}
         </div>
       )}
       <div>
-        <h1 className="text-3xl md:text-4xl font-bold font-display text-foreground">{title}</h1>
-        <p className="text-muted-foreground text-lg">{subtitle}</p>
+        <h1 className="text-5xl md:text-6xl font-bold font-display text-foreground">{title}</h1>
+        <p className="text-muted-foreground text-2xl mt-1">{subtitle}</p>
       </div>
     </motion.div>
   );

@@ -15,11 +15,11 @@ export const Panel07Proposals = () => {
       <PanelHeader 
         title="Qualidade das Propostas"
         subtitle="Estamos mandando proposta que fecha?"
-        icon={<FileText className="w-6 h-6" />}
+        icon={<FileText className="w-10 h-10" />}
       />
 
-      <div className="flex-1 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="flex-1 space-y-6">
+        <div className="grid grid-cols-2 gap-6">
           <MetricCard
             label="Propostas Hoje"
             value={45}
@@ -42,13 +42,13 @@ export const Panel07Proposals = () => {
           transition={{ delay: 0.3 }}
           className="metric-card bg-gradient-to-br from-success/20 to-success/5 border-success/30"
         >
-          <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-5 h-5 text-success" />
-            <span className="text-sm text-muted-foreground uppercase">Taxa de Aceitação (Semana)</span>
+          <div className="flex items-center gap-3 mb-4">
+            <TrendingUp className="w-8 h-8 text-success" />
+            <span className="text-xl text-muted-foreground uppercase">Taxa de Aceitação (Semana)</span>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-6xl font-bold font-display text-success">42%</span>
-            <span className="text-success text-sm">+5% vs semana passada</span>
+          <div className="flex items-baseline gap-4">
+            <span className="text-8xl font-bold font-display text-success">42%</span>
+            <span className="text-success text-xl">+5% vs semana passada</span>
           </div>
         </motion.div>
 
@@ -58,12 +58,12 @@ export const Panel07Proposals = () => {
           transition={{ delay: 0.4 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-2">
-            <Clock className="w-5 h-5 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground uppercase">Tempo Médio até Decisão</span>
+          <div className="flex items-center gap-3 mb-4">
+            <Clock className="w-8 h-8 text-muted-foreground" />
+            <span className="text-xl text-muted-foreground uppercase">Tempo Médio até Decisão</span>
           </div>
-          <span className="text-4xl font-bold font-display text-foreground">3.2 dias</span>
-          <p className="text-sm text-muted-foreground mt-1">Meta: até 5 dias</p>
+          <span className="text-6xl font-bold font-display text-foreground">3.2 dias</span>
+          <p className="text-lg text-muted-foreground mt-2">Meta: até 5 dias</p>
         </motion.div>
 
         <motion.div
@@ -72,19 +72,19 @@ export const Panel07Proposals = () => {
           transition={{ delay: 0.5 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <XCircle className="w-5 h-5 text-destructive" />
-            <span className="text-sm text-muted-foreground uppercase">Motivos de Perda (Top 3)</span>
+          <div className="flex items-center gap-3 mb-6">
+            <XCircle className="w-8 h-8 text-destructive" />
+            <span className="text-xl text-muted-foreground uppercase">Motivos de Perda (Top 3)</span>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-5">
             {lossReasons.map((item, i) => (
-              <div key={item.reason} className="flex items-center gap-3">
+              <div key={item.reason} className="flex items-center gap-4">
                 <div className="flex-1">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-foreground font-medium">{item.reason}</span>
-                    <span className="text-muted-foreground">{item.count}</span>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-xl text-foreground font-medium">{item.reason}</span>
+                    <span className="text-xl text-muted-foreground">{item.count}</span>
                   </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                  <div className="h-4 bg-secondary rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${item.percentage}%` }}
@@ -93,7 +93,7 @@ export const Panel07Proposals = () => {
                     />
                   </div>
                 </div>
-                <span className="text-sm text-muted-foreground w-10 text-right">{item.percentage}%</span>
+                <span className="text-lg text-muted-foreground w-14 text-right">{item.percentage}%</span>
               </div>
             ))}
           </div>
