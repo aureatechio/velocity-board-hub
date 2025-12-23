@@ -15,85 +15,84 @@ export const Panel07Proposals = () => {
       <PanelHeader 
         title="Qualidade das Propostas"
         subtitle="Estamos mandando proposta que fecha?"
-        icon={<FileText className="w-5 h-5" />}
+        icon={<FileText className="w-4 h-4" />}
       />
 
-      <div className="flex-1 space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+      <div className="flex-1 grid grid-cols-4 gap-3 mt-3">
+        {/* Proposals counts */}
+        <div className="space-y-2">
           <MetricCard
             label="Propostas Hoje"
             value={45}
             variant="primary"
-            size="lg"
+            size="md"
             delay={0.1}
           />
           <MetricCard
             label="Propostas Semana"
             value={187}
             variant="default"
-            size="lg"
+            size="md"
             delay={0.2}
           />
         </div>
 
+        {/* Acceptance Rate */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="metric-card bg-gradient-to-br from-success/20 to-success/5 border-success/30"
+          className="metric-card bg-gradient-to-br from-success/20 to-success/5 border-success/30 flex flex-col justify-center"
         >
-          <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className="w-5 h-5 text-success" />
-            <span className="text-sm text-muted-foreground uppercase">Taxa Aceitação (Semana)</span>
+          <div className="flex items-center gap-1 mb-1">
+            <TrendingUp className="w-3 h-3 text-success" />
+            <span className="text-xs text-muted-foreground uppercase">Taxa Aceitação</span>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-4xl font-bold font-display text-success">42%</span>
-            <span className="text-success text-sm">+5% vs semana passada</span>
-          </div>
+          <span className="text-2xl font-bold font-display text-success">42%</span>
+          <span className="text-success text-xs">+5% vs semana passada</span>
         </motion.div>
 
+        {/* Decision Time */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="metric-card"
+          className="metric-card flex flex-col justify-center"
         >
-          <div className="flex items-center gap-2 mb-1">
-            <Clock className="w-5 h-5 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground uppercase">Tempo até Decisão</span>
+          <div className="flex items-center gap-1 mb-1">
+            <Clock className="w-3 h-3 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground uppercase">Tempo Decisão</span>
           </div>
-          <span className="text-3xl font-bold font-display text-foreground">3.2 dias</span>
+          <span className="text-2xl font-bold font-display text-foreground">3.2d</span>
           <p className="text-xs text-muted-foreground">Meta: até 5 dias</p>
         </motion.div>
 
+        {/* Loss Reasons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-3">
-            <XCircle className="w-5 h-5 text-destructive" />
-            <span className="text-sm text-muted-foreground uppercase">Motivos de Perda</span>
+          <div className="flex items-center gap-1 mb-2">
+            <XCircle className="w-3 h-3 text-destructive" />
+            <span className="text-xs text-muted-foreground uppercase">Motivos Perda</span>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {lossReasons.map((item, i) => (
-              <div key={item.reason} className="flex items-center gap-2">
-                <div className="flex-1">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm text-foreground">{item.reason}</span>
-                    <span className="text-xs text-muted-foreground">{item.count}</span>
-                  </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${item.percentage}%` }}
-                      transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
-                      className="h-full bg-destructive/70 rounded-full"
-                    />
-                  </div>
+              <div key={item.reason}>
+                <div className="flex justify-between text-xs mb-0.5">
+                  <span className="text-foreground">{item.reason}</span>
+                  <span className="text-muted-foreground">{item.percentage}%</span>
                 </div>
-                <span className="text-xs text-muted-foreground w-8 text-right">{item.percentage}%</span>
+                <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${item.percentage}%` }}
+                    transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                    className="h-full bg-destructive/70 rounded-full"
+                  />
+                </div>
               </div>
             ))}
           </div>

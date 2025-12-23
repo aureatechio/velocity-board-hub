@@ -10,15 +10,15 @@ export const Panel01Scoreboard = () => {
       <PanelHeader 
         title="Placar do Dia"
         subtitle="Como está HOJE?"
-        icon={<Trophy className="w-5 h-5" />}
+        icon={<Trophy className="w-4 h-4" />}
       />
 
-      <div className="flex-1 grid grid-cols-2 gap-3">
+      <div className="flex-1 grid grid-cols-4 gap-3 mt-3">
         <MetricCard
           label="Vendas Hoje"
           value="R$ 47.850"
           variant="success"
-          size="lg"
+          size="md"
           trend="up"
           trendValue="+12% vs ontem"
           delay={0.1}
@@ -28,7 +28,7 @@ export const Panel01Scoreboard = () => {
           label="Nº de Vendas"
           value={23}
           variant="primary"
-          size="lg"
+          size="md"
           delay={0.2}
         />
         
@@ -54,27 +54,27 @@ export const Panel01Scoreboard = () => {
       </div>
 
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="mt-4 metric-card"
+        className="mt-3 metric-card"
       >
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <Target className="w-5 h-5 text-primary" />
-            <span className="text-base font-bold">Meta do Dia</span>
+            <Target className="w-4 h-4 text-primary" />
+            <span className="text-sm font-bold">Meta do Dia</span>
           </div>
-          <span className="text-sm text-muted-foreground">R$ 60.000</span>
+          <span className="text-xs text-muted-foreground">R$ 60.000</span>
         </div>
-        <ProgressBar value={47850} max={60000} variant="primary" size="lg" />
+        <ProgressBar value={47850} max={60000} variant="primary" size="md" />
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-3 p-3 bg-warning/20 rounded-lg border border-warning/30 text-center"
+          className="mt-2 p-2 bg-warning/20 rounded-lg border border-warning/30 text-center"
         >
-          <p className="text-warning font-bold text-sm">
-            Faltam <span className="text-xl">7 vendas</span> ou <span className="text-xl">R$ 12.150</span> para bater!
+          <p className="text-warning font-bold text-xs">
+            Faltam <span className="text-base">7 vendas</span> ou <span className="text-base">R$ 12.150</span> para bater!
           </p>
         </motion.div>
       </motion.div>
