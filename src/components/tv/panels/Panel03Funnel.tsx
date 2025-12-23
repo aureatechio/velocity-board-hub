@@ -1,6 +1,6 @@
 import { PanelHeader } from "@/components/tv/PanelHeader";
 import { FunnelStage } from "@/components/tv/FunnelStage";
-import { Filter, Clock, ArrowRight } from "lucide-react";
+import { Filter, Clock, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Panel03Funnel = () => {
@@ -17,42 +17,39 @@ export const Panel03Funnel = () => {
       <PanelHeader 
         title="Funil do Dia"
         subtitle="Onde estamos perdendo?"
-        icon={<Filter className="w-4 h-4" />}
+        icon={<Filter className="w-6 h-6" />}
       />
 
-      <div className="flex-1 grid grid-cols-2 gap-4 mt-3">
-        {/* Funnel */}
-        <div className="flex flex-col justify-center space-y-1">
+      {/* Main content - horizontal layout */}
+      <div className="flex-1 flex gap-8">
+        {/* Left - Funnel visualization */}
+        <div className="flex-1 flex flex-col justify-center space-y-3">
           {funnelStages.map((stage, i) => (
-            <div key={stage.label} className="relative">
-              <FunnelStage {...stage} delay={0.1 + i * 0.08} />
-              {i < funnelStages.length - 1 && (
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 + i * 0.08 }}
-                  className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-10"
-                >
-                  <ArrowRight className="w-3 h-3 text-muted-foreground rotate-90" />
-                </motion.div>
-              )}
-            </div>
+            <FunnelStage 
+              key={stage.label} 
+              {...stage} 
+              delay={0.1 + i * 0.1} 
+            />
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="flex flex-col justify-center gap-2">
+        {/* Right - Stats */}
+        <div className="w-96 flex flex-col justify-center gap-4">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
             className="metric-card"
           >
-            <div className="flex items-center gap-1 mb-1">
-              <Clock className="w-3 h-3 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">Lead → Proposta</span>
+            <div className="flex items-center gap-3 mb-3">
+              <Clock className="w-5 h-5 text-primary" />
+              <span className="text-sm text-muted-foreground uppercase">Tempo Médio</span>
             </div>
-            <span className="text-xl font-bold font-display text-foreground">3.2 dias</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-4xl font-bold font-display text-foreground">3.2</span>
+              <span className="text-xl text-muted-foreground">dias</span>
+            </div>
+            <p className="text-muted-foreground mt-1">Lead até Proposta</p>
           </motion.div>
 
           <motion.div
@@ -61,9 +58,22 @@ export const Panel03Funnel = () => {
             transition={{ delay: 0.7 }}
             className="metric-card bg-destructive/10 border-destructive/30"
           >
-            <span className="text-xs text-muted-foreground block mb-1">Gargalo do Dia</span>
-            <span className="text-sm font-bold text-destructive">Qualif. → Proposta</span>
-            <p className="text-xs text-muted-foreground">45% (meta: 60%)</p>
+            <div className="flex items-center gap-3 mb-3">
+              <AlertTriangle className="w-5 h-5 text-destructive" />
+              <span className="text-sm text-muted-foreground uppercase">Gargalo do Dia</span>
+            </div>
+            <p className="text-xl font-bold text-destructive">Qualificação → Proposta</p>
+            <div className="mt-3 flex items-center gap-4">
+              <div>
+                <span className="text-2xl font-bold text-destructive">45%</span>
+                <span className="text-muted-foreground ml-2">conversão</span>
+              </div>
+              <div className="h-8 w-px bg-border"></div>
+              <div>
+                <span className="text-muted-foreground">Meta:</span>
+                <span className="text-foreground font-bold ml-2">60%</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

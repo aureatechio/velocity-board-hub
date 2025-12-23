@@ -73,74 +73,74 @@ const Index = () => {
 
   return (
     <div className="h-screen w-screen bg-background flex flex-col overflow-hidden">
-      {/* Header - compact for 16:9 */}
-      <header className="bg-card border-b border-border px-3 py-1.5 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <Monitor className="w-4 h-4 text-primary" />
-            <h1 className="text-sm font-bold font-display text-foreground">Sales TV</h1>
+      {/* Header */}
+      <header className="bg-card border-b border-border px-6 py-2 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Monitor className="w-5 h-5 text-primary" />
+            <h1 className="text-lg font-bold font-display text-foreground">Sales TV</h1>
           </div>
-          <div className="h-4 w-px bg-border" />
-          <span className="text-xs text-muted-foreground">
-            {currentPanel + 1}/{panels.length}
+          <div className="h-5 w-px bg-border" />
+          <span className="text-sm text-muted-foreground">
+            Painel {currentPanel + 1} de {panels.length}
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setAutoRotate(!autoRotate)}
             className={cn(
-              "px-2 py-1 rounded text-xs font-medium transition-colors",
+              "px-4 py-1.5 rounded-lg text-sm font-medium transition-colors",
               autoRotate
                 ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
             )}
           >
-            {autoRotate ? "⏸" : "▶"}
+            {autoRotate ? "⏸ Pausar" : "▶ Auto"}
           </button>
           <button
             onClick={toggleFullscreen}
-            className="p-1 rounded bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors"
+            className="p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors"
           >
-            <Maximize2 className="w-3.5 h-3.5" />
+            <Maximize2 className="w-4 h-4" />
           </button>
         </div>
       </header>
 
-      {/* Panel Navigation - horizontal tabs */}
-      <nav className="bg-card/50 border-b border-border px-2 py-1 flex gap-0.5 overflow-x-auto shrink-0">
+      {/* Panel Navigation */}
+      <nav className="bg-card/50 border-b border-border px-4 py-2 flex gap-2 overflow-x-auto shrink-0">
         {panels.map((panel, i) => (
           <button
             key={panel.id}
             onClick={() => setCurrentPanel(i)}
             className={cn(
-              "px-2 py-0.5 rounded text-xs font-medium whitespace-nowrap transition-all",
+              "px-4 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all",
               currentPanel === i
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:text-foreground hover:bg-secondary"
             )}
           >
-            {panel.id}
+            {panel.id}. {panel.name}
           </button>
         ))}
       </nav>
 
-      {/* Main Panel Area - 16:9 optimized */}
-      <main className="flex-1 relative overflow-hidden min-h-0">
+      {/* Main Panel Area */}
+      <main className="flex-1 relative overflow-hidden">
         <button
           onClick={prevPanel}
-          className="absolute left-1 top-1/2 -translate-y-1/2 p-1 rounded-full bg-card/80 border border-border hover:bg-secondary transition-colors z-10"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-card/90 border border-border hover:bg-secondary transition-colors z-10"
         >
-          <ChevronLeft className="w-4 h-4 text-foreground" />
+          <ChevronLeft className="w-6 h-6 text-foreground" />
         </button>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPanel}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
             className="h-full w-full"
           >
             <CurrentPanelComponent />
@@ -149,9 +149,9 @@ const Index = () => {
 
         <button
           onClick={nextPanel}
-          className="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded-full bg-card/80 border border-border hover:bg-secondary transition-colors z-10"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-card/90 border border-border hover:bg-secondary transition-colors z-10"
         >
-          <ChevronRight className="w-4 h-4 text-foreground" />
+          <ChevronRight className="w-6 h-6 text-foreground" />
         </button>
       </main>
     </div>
