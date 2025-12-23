@@ -1,6 +1,5 @@
 import { PanelHeader } from "@/components/tv/PanelHeader";
-import { MetricCard } from "@/components/tv/MetricCard";
-import { Briefcase, AlertTriangle, Clock } from "lucide-react";
+import { Briefcase, AlertTriangle, Clock, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -26,53 +25,50 @@ export const Panel04Pipeline = () => {
         icon={<Briefcase className="w-6 h-6" />}
       />
 
-      {/* Main content - horizontal layout */}
-      <div className="flex-1 flex gap-6">
-        {/* Left - Total and stages */}
-        <div className="flex-1 flex flex-col gap-4">
-          <MetricCard
-            label="Total em Negociação"
-            value="R$ 368.000"
-            variant="primary"
-            size="lg"
-            delay={0.1}
-          />
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="grid grid-cols-4 gap-3 flex-1"
-          >
-            {stages.map((stage, i) => (
-              <motion.div
-                key={stage.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + i * 0.1 }}
-                className="metric-card text-center flex flex-col justify-center"
-              >
-                <div className={cn("rounded-xl p-4 mb-3", stage.color)}>
-                  <span className="text-3xl font-bold font-display text-foreground">{stage.value}</span>
-                </div>
-                <p className="text-sm text-muted-foreground">{stage.label}</p>
-                <p className="text-lg font-bold text-foreground">{stage.amount}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+      <div className="flex-1 grid grid-cols-3 gap-4">
+        {/* Coluna 1 - Total */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="metric-card bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 flex flex-col justify-center items-center text-center"
+        >
+          <DollarSign className="w-12 h-12 text-primary mb-4" />
+          <span className="text-xl text-muted-foreground uppercase mb-2">Total em Negociação</span>
+          <span className="text-6xl font-bold font-display text-primary">R$ 368k</span>
+          <span className="text-muted-foreground text-lg mt-2">43 negócios ativos</span>
+        </motion.div>
+
+        {/* Coluna 2 - Estágios */}
+        <div className="grid grid-cols-2 gap-3">
+          {stages.map((stage, i) => (
+            <motion.div
+              key={stage.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + i * 0.1 }}
+              className="metric-card flex flex-col justify-center items-center text-center"
+            >
+              <div className={cn("w-full rounded-xl p-4 mb-3", stage.color)}>
+                <span className="text-5xl font-bold font-display text-foreground">{stage.value}</span>
+              </div>
+              <p className="text-lg text-muted-foreground">{stage.label}</p>
+              <p className="text-2xl font-bold text-foreground">{stage.amount}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Right - Alerts */}
-        <div className="w-96 flex flex-col gap-4">
+        {/* Coluna 3 - Alertas */}
+        <div className="flex flex-col gap-4">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.6 }}
             className="metric-card flex-1"
           >
             <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-5 h-5 text-destructive" />
-              <span className="text-sm text-muted-foreground uppercase">Risco Alto (+5 dias)</span>
+              <AlertTriangle className="w-6 h-6 text-destructive" />
+              <span className="text-lg text-muted-foreground uppercase">Risco Alto (+5 dias)</span>
             </div>
             <div className="space-y-3">
               {urgentDeals.map((deal, i) => (
@@ -80,13 +76,13 @@ export const Panel04Pipeline = () => {
                   key={deal.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 + i * 0.1 }}
-                  className="flex items-center justify-between p-3 bg-destructive/10 rounded-lg border border-destructive/30"
+                  transition={{ delay: 0.7 + i * 0.1 }}
+                  className="flex items-center justify-between p-4 bg-destructive/10 rounded-xl border border-destructive/30"
                 >
-                  <span className="font-bold text-foreground">{deal.name}</span>
+                  <span className="font-bold text-foreground text-lg">{deal.name}</span>
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-foreground">{deal.value}</span>
-                    <span className="text-sm text-destructive bg-destructive/20 px-2 py-1 rounded">
+                    <span className="font-bold text-foreground text-lg">{deal.value}</span>
+                    <span className="text-destructive bg-destructive/20 px-3 py-1 rounded-lg font-bold">
                       {deal.days}d
                     </span>
                   </div>
@@ -99,16 +95,16 @@ export const Panel04Pipeline = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1 }}
-            className="metric-card bg-warning/10 border-warning/30"
+            className="metric-card bg-warning/10 border-warning/30 flex items-center gap-4"
           >
-            <div className="flex items-center gap-3 mb-2">
-              <Clock className="w-5 h-5 text-warning" />
-              <span className="text-base text-warning font-bold">Próximas 24h</span>
+            <Clock className="w-10 h-10 text-warning" />
+            <div>
+              <span className="text-lg text-warning font-bold">Próximas 24h</span>
+              <p className="text-foreground">
+                <span className="text-4xl font-bold">8</span>
+                <span className="text-xl ml-2">negócios com prazo</span>
+              </p>
             </div>
-            <p className="text-foreground">
-              <span className="text-3xl font-bold">8</span>
-              <span className="text-lg ml-2">negócios com prazo</span>
-            </p>
           </motion.div>
         </div>
       </div>
