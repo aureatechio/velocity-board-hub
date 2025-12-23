@@ -1,6 +1,6 @@
 import { PanelHeader } from "@/components/tv/PanelHeader";
 import { LeaderboardCard } from "@/components/tv/LeaderboardCard";
-import { Users, TrendingUp, Rocket } from "lucide-react";
+import { Users, TrendingUp, Rocket, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Panel02Leaderboard = () => {
@@ -18,69 +18,82 @@ export const Panel02Leaderboard = () => {
         icon={<Users className="w-6 h-6" />}
       />
 
-      {/* Main content - horizontal layout */}
-      <div className="flex-1 flex gap-6">
-        {/* Left - Top 3 ranking */}
-        <div className="flex-1 space-y-4">
-          <h3 className="text-sm uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-            <span className="w-2 h-2 bg-primary rounded-full"></span>
-            Top 3 do Dia
-          </h3>
+      {/* Grid que preenche toda a tela */}
+      <div className="flex-1 grid grid-cols-3 gap-4">
+        {/* Coluna 1 - Top 3 ranking */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Award className="w-5 h-5 text-primary" />
+            <span className="text-lg uppercase tracking-wider text-muted-foreground">Top 3 do Dia</span>
+          </div>
           {topSellers.map((seller, i) => (
-            <LeaderboardCard
-              key={seller.name}
-              {...seller}
-              delay={0.1 + i * 0.15}
-            />
+            <div key={seller.name} className="flex-1">
+              <LeaderboardCard
+                {...seller}
+                delay={0.1 + i * 0.15}
+              />
+            </div>
           ))}
         </div>
 
-        {/* Center - Stats cards */}
-        <div className="flex-1 space-y-4">
+        {/* Coluna 2 - Stats */}
+        <div className="flex flex-col gap-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="metric-card bg-gradient-to-br from-success/20 to-success/5 border-success/30"
+            className="metric-card flex-1 bg-gradient-to-br from-success/20 to-success/5 border-success/30 flex flex-col justify-center"
           >
-            <div className="flex items-center gap-3 mb-3">
-              <TrendingUp className="w-5 h-5 text-success" />
-              <span className="text-sm text-muted-foreground uppercase">Maior Evolução</span>
+            <div className="flex items-center gap-3 mb-4">
+              <TrendingUp className="w-8 h-8 text-success" />
+              <span className="text-lg text-muted-foreground uppercase">Maior Evolução</span>
             </div>
-            <p className="text-xl font-bold">João Pedro</p>
-            <p className="text-success text-lg">+150% vs ontem</p>
+            <p className="text-4xl font-bold text-foreground">João Pedro</p>
+            <p className="text-success text-3xl font-bold mt-2">+150%</p>
+            <p className="text-muted-foreground text-lg">vs ontem</p>
           </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="metric-card bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30"
+            className="metric-card flex-1 bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 flex flex-col justify-center"
           >
-            <div className="flex items-center gap-3 mb-3">
-              <Rocket className="w-5 h-5 text-primary" />
-              <span className="text-sm text-muted-foreground uppercase">Mais Propostas</span>
+            <div className="flex items-center gap-3 mb-4">
+              <Rocket className="w-8 h-8 text-primary" />
+              <span className="text-lg text-muted-foreground uppercase">Mais Propostas</span>
             </div>
-            <p className="text-xl font-bold">Fernanda Lima</p>
-            <p className="text-primary text-lg">18 propostas hoje</p>
+            <p className="text-4xl font-bold text-foreground">Fernanda Lima</p>
+            <p className="text-primary text-3xl font-bold mt-2">18</p>
+            <p className="text-muted-foreground text-lg">propostas hoje</p>
           </motion.div>
         </div>
 
-        {/* Right - Insight */}
+        {/* Coluna 3 - Disputa e resumo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7 }}
-          className="w-80 metric-card flex flex-col justify-center text-center"
+          className="metric-card flex flex-col justify-center items-center text-center"
         >
-          <p className="text-muted-foreground text-sm mb-2">Disputa pelo 1º lugar</p>
-          <p className="text-lg">
-            <span className="text-foreground font-bold text-xl">Carlos</span> precisa de
-          </p>
-          <p className="text-primary font-bold text-3xl my-2">2 vendas</p>
-          <p className="text-lg">
-            para passar <span className="text-foreground font-bold text-xl">Ana</span>
-          </p>
+          <p className="text-muted-foreground text-xl mb-4">🏆 Disputa pelo 1º lugar</p>
+          
+          <div className="space-y-6">
+            <div>
+              <p className="text-foreground font-bold text-4xl">Carlos Santos</p>
+              <p className="text-muted-foreground text-lg">precisa de</p>
+            </div>
+            
+            <div className="py-6 px-8 bg-primary/20 rounded-2xl border border-primary/30">
+              <span className="text-primary font-bold text-7xl">2</span>
+              <p className="text-primary text-2xl font-bold">vendas</p>
+            </div>
+            
+            <div>
+              <p className="text-muted-foreground text-lg">para ultrapassar</p>
+              <p className="text-foreground font-bold text-4xl">Ana Silva</p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
