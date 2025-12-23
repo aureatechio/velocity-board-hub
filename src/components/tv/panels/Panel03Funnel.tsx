@@ -17,48 +17,55 @@ export const Panel03Funnel = () => {
       <PanelHeader 
         title="Funil do Dia"
         subtitle="Onde estamos perdendo?"
-        icon={<Filter className="w-5 h-5" />}
+        icon={<Filter className="w-4 h-4" />}
       />
 
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="relative space-y-2">
+      <div className="flex-1 grid grid-cols-2 gap-4 mt-3">
+        {/* Funnel */}
+        <div className="flex flex-col justify-center space-y-1">
           {funnelStages.map((stage, i) => (
             <div key={stage.label} className="relative">
-              <FunnelStage {...stage} delay={0.1 + i * 0.1} />
+              <FunnelStage {...stage} delay={0.1 + i * 0.08} />
               {i < funnelStages.length - 1 && (
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 + i * 0.1 }}
-                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 z-10"
+                  transition={{ delay: 0.2 + i * 0.08 }}
+                  className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-10"
                 >
-                  <ArrowRight className="w-4 h-4 text-muted-foreground rotate-90" />
+                  <ArrowRight className="w-3 h-3 text-muted-foreground rotate-90" />
                 </motion.div>
               )}
             </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-4 grid grid-cols-2 gap-3"
-        >
-          <div className="metric-card">
-            <div className="flex items-center gap-2 mb-1">
-              <Clock className="w-4 h-4 text-muted-foreground" />
+        {/* Stats */}
+        <div className="flex flex-col justify-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6 }}
+            className="metric-card"
+          >
+            <div className="flex items-center gap-1 mb-1">
+              <Clock className="w-3 h-3 text-muted-foreground" />
               <span className="text-xs text-muted-foreground">Lead → Proposta</span>
             </div>
-            <span className="text-2xl font-bold font-display text-foreground">3.2 dias</span>
-          </div>
+            <span className="text-xl font-bold font-display text-foreground">3.2 dias</span>
+          </motion.div>
 
-          <div className="metric-card bg-destructive/10 border-destructive/30">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7 }}
+            className="metric-card bg-destructive/10 border-destructive/30"
+          >
             <span className="text-xs text-muted-foreground block mb-1">Gargalo do Dia</span>
-            <span className="text-base font-bold text-destructive">Qualif. → Proposta</span>
+            <span className="text-sm font-bold text-destructive">Qualif. → Proposta</span>
             <p className="text-xs text-muted-foreground">45% (meta: 60%)</p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

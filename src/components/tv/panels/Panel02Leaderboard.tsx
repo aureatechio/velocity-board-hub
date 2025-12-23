@@ -15,60 +15,60 @@ export const Panel02Leaderboard = () => {
       <PanelHeader 
         title="Top Vendedores"
         subtitle="Quem está puxando a fila?"
-        icon={<Users className="w-5 h-5" />}
+        icon={<Users className="w-4 h-4" />}
       />
 
-      <div className="flex-1 space-y-3">
+      <div className="flex-1 grid grid-cols-3 gap-3 mt-3">
+        {/* Top 3 */}
         <div className="space-y-2">
-          <h3 className="text-sm uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-            <span className="w-2 h-2 bg-primary rounded-full"></span>
+          <h3 className="text-xs uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+            <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
             Top 3 do Dia
           </h3>
           {topSellers.map((seller, i) => (
             <LeaderboardCard
               key={seller.name}
               {...seller}
-              delay={0.1 + i * 0.15}
+              delay={0.1 + i * 0.1}
             />
           ))}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="grid grid-cols-2 gap-3"
-        >
+        {/* Stats */}
+        <div className="space-y-2">
           <div className="metric-card bg-gradient-to-br from-success/20 to-success/5 border-success/30">
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="w-4 h-4 text-success" />
+            <div className="flex items-center gap-1 mb-1">
+              <TrendingUp className="w-3 h-3 text-success" />
               <span className="text-xs text-muted-foreground uppercase">Maior Evolução</span>
             </div>
-            <p className="text-lg font-bold truncate">João Pedro</p>
-            <p className="text-success text-sm">+150% vs ontem</p>
+            <p className="text-sm font-bold truncate">João Pedro</p>
+            <p className="text-success text-xs">+150% vs ontem</p>
           </div>
 
           <div className="metric-card bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30">
-            <div className="flex items-center gap-2 mb-2">
-              <Rocket className="w-4 h-4 text-primary" />
+            <div className="flex items-center gap-1 mb-1">
+              <Rocket className="w-3 h-3 text-primary" />
               <span className="text-xs text-muted-foreground uppercase">Mais Propostas</span>
             </div>
-            <p className="text-lg font-bold truncate">Fernanda Lima</p>
-            <p className="text-primary text-sm">18 propostas hoje</p>
+            <p className="text-sm font-bold truncate">Fernanda Lima</p>
+            <p className="text-primary text-xs">18 propostas hoje</p>
           </div>
-        </motion.div>
+        </div>
 
+        {/* Insight */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="p-3 bg-card rounded-lg border border-border/50"
+          transition={{ delay: 0.6 }}
+          className="flex items-center"
         >
-          <p className="text-sm text-muted-foreground text-center">
-            <span className="text-foreground font-bold">Carlos</span> precisa de{" "}
-            <span className="text-primary font-bold">2 vendas</span> para passar{" "}
-            <span className="text-foreground font-bold">Ana</span>
-          </p>
+          <div className="p-3 bg-card rounded-lg border border-border/50 w-full">
+            <p className="text-xs text-muted-foreground text-center">
+              <span className="text-foreground font-bold">Carlos</span> precisa de{" "}
+              <span className="text-primary font-bold">2 vendas</span> para passar{" "}
+              <span className="text-foreground font-bold">Ana</span>
+            </p>
+          </div>
         </motion.div>
       </div>
     </div>

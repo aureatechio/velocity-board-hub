@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export const Panel08SalesMix = () => {
   const topProducts = [
-    { name: "Plano Premium", sales: 45, revenue: "R$ 89.500" },
-    { name: "Plano Business", sales: 32, revenue: "R$ 48.000" },
-    { name: "Plano Starter", sales: 28, revenue: "R$ 28.000" },
+    { name: "Plano Premium", sales: 45, revenue: "R$ 89.5k" },
+    { name: "Plano Business", sales: 32, revenue: "R$ 48k" },
+    { name: "Plano Starter", sales: 28, revenue: "R$ 28k" },
   ];
 
   const channels = [
@@ -21,56 +21,58 @@ export const Panel08SalesMix = () => {
       <PanelHeader 
         title="Vendas: Mix e Ticket"
         subtitle="O que estamos vendendo e por quanto?"
-        icon={<ShoppingBag className="w-5 h-5" />}
+        icon={<ShoppingBag className="w-4 h-4" />}
       />
 
-      <div className="flex-1 space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+      <div className="flex-1 grid grid-cols-3 gap-3 mt-3">
+        {/* Tickets */}
+        <div className="space-y-2">
           <MetricCard
             label="Ticket Médio Hoje"
             value="R$ 2.080"
             variant="primary"
-            size="md"
+            size="sm"
             trend="up"
-            trendValue="+8% vs média"
+            trendValue="+8%"
             delay={0.1}
           />
           <MetricCard
             label="Ticket Semana"
             value="R$ 1.950"
             variant="default"
-            size="md"
+            size="sm"
             delay={0.2}
           />
         </div>
 
+        {/* Top Products */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-3">
-            <Tag className="w-5 h-5 text-primary" />
-            <span className="text-sm text-muted-foreground uppercase">Mais Vendidos</span>
+          <div className="flex items-center gap-1 mb-2">
+            <Tag className="w-3 h-3 text-primary" />
+            <span className="text-xs text-muted-foreground uppercase">Mais Vendidos</span>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {topProducts.map((product, i) => (
               <motion.div
                 key={product.name}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="flex items-center justify-between p-2 bg-secondary/50 rounded-lg"
+                className="flex items-center justify-between p-1.5 bg-secondary/50 rounded"
               >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm shrink-0">
+                <div className="flex items-center gap-1 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs shrink-0">
                     {i + 1}
                   </span>
-                  <span className="font-bold text-foreground text-sm truncate">{product.name}</span>
+                  <span className="font-bold text-foreground text-xs truncate">{product.name}</span>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-sm font-bold text-foreground">{product.sales} vendas</p>
+                  <p className="text-xs font-bold text-foreground">{product.sales}</p>
                   <p className="text-xs text-muted-foreground">{product.revenue}</p>
                 </div>
               </motion.div>
@@ -78,17 +80,18 @@ export const Panel08SalesMix = () => {
           </div>
         </motion.div>
 
+        {/* Revenue by Channel */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
           className="metric-card"
         >
-          <div className="flex items-center gap-2 mb-3">
-            <DollarSign className="w-5 h-5 text-success" />
-            <span className="text-sm text-muted-foreground uppercase">Receita por Canal</span>
+          <div className="flex items-center gap-1 mb-2">
+            <DollarSign className="w-3 h-3 text-success" />
+            <span className="text-xs text-muted-foreground uppercase">Receita/Canal</span>
           </div>
-          <div className="flex h-6 rounded-lg overflow-hidden mb-2">
+          <div className="flex h-4 rounded overflow-hidden mb-2">
             {channels.map((channel) => (
               <motion.div
                 key={channel.name}
@@ -99,11 +102,13 @@ export const Panel08SalesMix = () => {
               />
             ))}
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="space-y-1">
             {channels.map((channel) => (
-              <div key={channel.name} className="flex items-center gap-1">
-                <div className={`w-2 h-2 rounded-full ${channel.color}`} />
-                <span className="text-muted-foreground">{channel.name}</span>
+              <div key={channel.name} className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1">
+                  <div className={`w-2 h-2 rounded-full ${channel.color}`} />
+                  <span className="text-muted-foreground">{channel.name}</span>
+                </div>
                 <span className="font-bold text-foreground">{channel.value}%</span>
               </div>
             ))}
